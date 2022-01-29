@@ -17,24 +17,17 @@ public class SwitchCube : MonoBehaviour
         myMeshRenderer = GetComponent<MeshRenderer>();
         setPlaceholder(placeholderMaterialZero, placeholderMaterialOne);
     }
-
-    private void OnMouseOver()
+    public void MouseInputHandler(bool isOne)
     {
-        MouseInputHandler();
-    }
-
-    private void MouseInputHandler()
-    {
-        if (Input.GetMouseButtonDown(0))
+        if (isOne)
         {
-            ValidBinaryMaterial(!isOne, activatedMaterialZero, placeholderMaterialZero);
-            isOne = false;
+            ValidBinaryMaterial(true, activatedMaterialOne, placeholderMaterialOne);
+  
         }
-
-        if (Input.GetMouseButtonDown(1))
+        else
         {
-            ValidBinaryMaterial(isOne, activatedMaterialOne, placeholderMaterialOne);
-            isOne = true;
+            ValidBinaryMaterial(true, activatedMaterialZero, placeholderMaterialZero);
+
         }
     }
 

@@ -16,7 +16,10 @@ public class PieceMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canMove) Move();
+        if (canMove)
+        {
+            Move();
+        }
     }
 
     private void Move()
@@ -25,8 +28,12 @@ public class PieceMovement : MonoBehaviour
         transform.Translate(speed * Time.deltaTime * new Vector3(-horizontal, customGravity, 0));
     }
 
-    public void stopFall()
+    private void OnCollisionEnter(Collision other)
     {
-        if (canMove) canMove = false;
+        if (other.gameObject.CompareTag("Base"))
+        {
+            canMove = false;
+           // GameObject.Find("Spawn").GetComponent<SpawnManager>().spawnPiece();
+        }
     }
 }

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cube
+  - Base
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -37,7 +39,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - BinaryCube
   m_SortingLayers:
   - name: Default
     uniqueID: 0
