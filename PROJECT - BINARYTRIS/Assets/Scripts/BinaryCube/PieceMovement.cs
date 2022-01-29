@@ -25,15 +25,11 @@ public class PieceMovement : MonoBehaviour
     private void Move()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        transform.Translate(speed * Time.deltaTime * new Vector3(-horizontal, customGravity, 0));
+        float vertical = Input.GetAxisRaw("Vertical");
+        transform.Translate(speed * Time.deltaTime * new Vector3(-horizontal, customGravity, vertical));
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Base"))
-        {
-            canMove = false;
-           // GameObject.Find("Spawn").GetComponent<SpawnManager>().spawnPiece();
-        }
+    public void stopMove(){
+        canMove  = false;
     }
 }
