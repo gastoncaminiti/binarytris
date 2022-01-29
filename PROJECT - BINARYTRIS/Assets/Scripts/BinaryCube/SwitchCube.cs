@@ -57,7 +57,7 @@ public class SwitchCube : MonoBehaviour
             setMaterial(placeholderMaterial);
             isPlaceholder = true;
         }
-        
+
     }
 
     private void setPlaceholder(Material placeholderMaterial0, Material placeholderMaterial1)
