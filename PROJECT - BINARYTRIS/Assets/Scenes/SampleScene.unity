@@ -407,5 +407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5457829f4fbe4174686388f94e5cb49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatedMaterial: {fileID: 2100000, guid: dde38de078be3984aaca30cdcef160fb, type: 2}
-  placeholderMaterial: {fileID: 2100000, guid: dc732776a4dfce143a94acdb2a4029db, type: 2}
+  activatedMaterialZero: {fileID: 2100000, guid: dde38de078be3984aaca30cdcef160fb, type: 2}
+  activatedMaterialOne: {fileID: 2100000, guid: 7fee09cf733d6034a8bf50bda4b52522, type: 2}
+  placeholderMaterialOne: {fileID: 2100000, guid: 7fee09cf733d6034a8bf50bda4b52522, type: 2}
+  placeholderMaterialZero: {fileID: 2100000, guid: dde38de078be3984aaca30cdcef160fb, type: 2}
+  isOne: 1

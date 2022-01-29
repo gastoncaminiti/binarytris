@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class SwitchCube : MonoBehaviour
 {
-    [SerializeField] private Material activatedMaterial;
-    [SerializeField] private Material placeholderMaterial;
+    [SerializeField] private Material activatedMaterialZero;
+    [SerializeField] private Material activatedMaterialOne;
+    [SerializeField] private Material placeholderMaterialOne;
+    [SerializeField] private Material placeholderMaterialZero;
 
+    [SerializeField] private bool isOne;
     private MeshRenderer myMeshRenderer;
-
+    private bool isPlaceholder = true;
     void Start()
     {
         myMeshRenderer = GetComponent<MeshRenderer>();
+        setPlaceholder(placeholderMaterialZero, placeholderMaterialOne);
     }
 
     private void OnMouseOver()
@@ -23,11 +27,48 @@ public class SwitchCube : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            setMaterial(placeholderMaterial);
+            ValidBinaryMaterial(!isOne, activatedMaterialZero, placeholderMaterialZero);
+            isOne = false;
         }
+
         if (Input.GetMouseButtonDown(1))
         {
-            setMaterial(activatedMaterial);
+            ValidBinaryMaterial(isOne, activatedMaterialOne, placeholderMaterialOne);
+            isOne = true;
+        }
+    }
+
+    private void ValidBinaryMaterial(bool binary, Material activatedMaterial, Material placeholderMaterial)
+    {
+        if (binary)
+        {
+            if (isPlaceholder)
+            {
+                setMaterial(activatedMaterial);
+            }
+            else
+            {
+                setMaterial(placeholderMaterial);
+            }
+            isPlaceholder = !isPlaceholder;
+        }
+        else
+        {
+            setMaterial(placeholderMaterial);
+            isPlaceholder = true;
+        }
+        
+    }
+
+    private void setPlaceholder(Material placeholderMaterial0, Material placeholderMaterial1)
+    {
+        if (isOne)
+        {
+            setMaterial(placeholderMaterial1);
+        }
+        else
+        {
+            setMaterial(placeholderMaterial0);
         }
     }
 
@@ -35,4 +76,5 @@ public class SwitchCube : MonoBehaviour
     {
         myMeshRenderer.material = newMaterial;
     }
+
 }
