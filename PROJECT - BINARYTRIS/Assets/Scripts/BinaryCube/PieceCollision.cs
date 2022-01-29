@@ -20,27 +20,30 @@ public class PieceCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Base"))
         {
-            Debug.Log("BASE");
             ResetPiece();
-        }
-
-        if (other.gameObject.CompareTag("Wall"))
-        {
-            Debug.Log("WALL");
-            Vector3 direction = (transform.position - other.transform.position).normalized;
-            myPieceMovement.transform.Translate(direction);
-
         }
 
         if (other.gameObject.CompareTag("Piece"))
         {
-            myPieceMovement.stopMove();
+            ResetPiece();
         }
     }
 
     private void ResetPiece()
     {
-        myPieceMovement.stopMove();
-        mySpawnManager.spawnPiece();
+        myPieceMovement.StopMove();
+        mySpawnManager.SpawnPiece();
+        DeletedZeros();
+    }
+
+    private void DeletedZeros()
+    {
+        foreach (Transform child in transform.parent.GetChild(1))
+        {
+            if (child.GetComponent<SwitchCube>().isZeroDeleted())
+            {
+                Destroy(child.gameObject);
+            }
+        }
     }
 }

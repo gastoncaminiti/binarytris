@@ -6,8 +6,9 @@ public class PieceMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private float customGravity = 2f;
-    [SerializeField] private float speed = 2f;
+    [SerializeField] private float speedGravity = 2f;
     private bool canMove = true;
+    private Vector3 lastMove = new Vector3(0f, 0f, 0f);
     void Start()
     {
 
@@ -24,12 +25,49 @@ public class PieceMovement : MonoBehaviour
 
     private void Move()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        transform.Translate(speed * Time.deltaTime * new Vector3(-horizontal, customGravity, vertical));
+        /*
+        if (Input.GetKeyUp(KeyCode.W) && validMove(Vector3.forward))
+        {
+            lastMove = Vector3.forward;
+            transform.position += lastMove;
+        }
+
+        if (Input.GetKeyUp(KeyCode.S) && validMove(Vector3.back))
+        {
+            lastMove = Vector3.back;
+            transform.position += lastMove;
+        }
+        */
+
+        if (Input.GetKeyUp(KeyCode.A) && validMove(Vector3.right))
+        {
+            lastMove = Vector3.right;
+            transform.position += lastMove;
+        }
+
+        if (Input.GetKeyUp(KeyCode.D) && validMove(Vector3.left))
+        {
+            lastMove = Vector3.left;
+            transform.position += lastMove;
+        }
+
+        transform.Translate(new Vector3(0f, customGravity, 0f) * speedGravity * Time.deltaTime);
     }
 
-    public void stopMove(){
-        canMove  = false;
+    public void StopMove()
+    {
+        canMove = false;
+    }
+
+    public bool validMove(Vector3 nextDirecction)
+    {
+        Vector3 nextMove = transform.position + nextDirecction;
+
+        if (nextMove.x < GridManager.Zoffset  && nextMove.x > -GridManager.Zoffset)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

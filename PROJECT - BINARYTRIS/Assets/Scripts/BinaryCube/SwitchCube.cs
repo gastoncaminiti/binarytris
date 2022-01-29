@@ -21,19 +21,17 @@ public class SwitchCube : MonoBehaviour
     {
         if (isOne)
         {
-            ValidBinaryMaterial(true, activatedMaterialOne, placeholderMaterialOne);
-  
+            activateBirnaryCube(true, activatedMaterialOne, placeholderMaterialOne);
         }
         else
         {
-            ValidBinaryMaterial(true, activatedMaterialZero, placeholderMaterialZero);
-
+            activateBirnaryCube(false, activatedMaterialZero, placeholderMaterialZero);
         }
     }
 
-    private void ValidBinaryMaterial(bool binary, Material activatedMaterial, Material placeholderMaterial)
+    private void activateBirnaryCube(bool binary, Material activatedMaterial, Material placeholderMaterial)
     {
-        if (binary)
+        if (binary == isOne)
         {
             if (isPlaceholder)
             {
@@ -45,12 +43,6 @@ public class SwitchCube : MonoBehaviour
             }
             isPlaceholder = !isPlaceholder;
         }
-        else
-        {
-            setMaterial(placeholderMaterial);
-            isPlaceholder = true;
-        }
-
     }
 
     private void setPlaceholder(Material placeholderMaterial0, Material placeholderMaterial1)
@@ -68,6 +60,11 @@ public class SwitchCube : MonoBehaviour
     private void setMaterial(Material newMaterial)
     {
         myMeshRenderer.material = newMaterial;
+    }
+
+    public bool isZeroDeleted()
+    {
+        return !isOne && !isPlaceholder;
     }
 
 }
