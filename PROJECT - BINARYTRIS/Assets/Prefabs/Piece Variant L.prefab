@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 531939191917713138, guid: a8728cd363b811b40a78d82c4310247e, type: 3}
       propertyPath: m_Name
-      value: Piece
+      value: Piece Variant L
       objectReference: {fileID: 0}
     - target: {fileID: 531939191917713139, guid: a8728cd363b811b40a78d82c4310247e, type: 3}
       propertyPath: m_RootOrder
@@ -53,6 +53,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 531939191917713139, guid: a8728cd363b811b40a78d82c4310247e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469178019488019344, guid: a8728cd363b811b40a78d82c4310247e, type: 3}
+      propertyPath: isOne
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469178019574836791, guid: a8728cd363b811b40a78d82c4310247e, type: 3}
+      propertyPath: isOne
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469178019782939106, guid: a8728cd363b811b40a78d82c4310247e, type: 3}
+      propertyPath: isOne
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469178019918679471, guid: a8728cd363b811b40a78d82c4310247e, type: 3}
+      propertyPath: isOne
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
