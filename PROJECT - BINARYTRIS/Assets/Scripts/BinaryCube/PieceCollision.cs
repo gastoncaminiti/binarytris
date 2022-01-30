@@ -51,14 +51,17 @@ public class PieceCollision : MonoBehaviour
         AddGrid();
     }
 
-    private void AddGrid(){
-         foreach (Transform children in myCubes)
+    private void AddGrid()
+    {
+        foreach (Transform children in myCubes)
         {
             int Xpos = (int)(children.transform.position.x);
             int Ypos = (int)(children.transform.position.y);
-            GridManager.Grid[Xpos,Ypos] = children;
+            if (children.GetComponent<SwitchCube>().isOneValid())
+            {
+                GridManager.Grid[Xpos, Ypos] = children;
+            }
         }
-
         GridManager.checkPlane();
     }
 }

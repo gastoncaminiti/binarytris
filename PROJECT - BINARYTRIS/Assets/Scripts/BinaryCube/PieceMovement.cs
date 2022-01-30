@@ -8,10 +8,10 @@ public class PieceMovement : MonoBehaviour
     [SerializeField] private float customGravity = 2f;
     [SerializeField] private float speedGravity = 2f;
     private bool canMove = true;
-    private Vector3 lastMove = new Vector3(0f, 0f, 0f);
+    private Transform myCubes;
     void Start()
     {
-
+        myCubes = transform.GetChild(1);
     }
 
     // Update is called once per frame
@@ -33,21 +33,25 @@ public class PieceMovement : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.A) && isValidLeft())
         {
-            
+
             if (isVertical())
             {
-                transform.position += (Vector3.left + new Vector3(GridManager.vOffset,0f,0f));
-            }else{
+                transform.position += (Vector3.left + new Vector3(GridManager.vOffset, 0f, 0f));
+            }
+            else
+            {
                 transform.position += Vector3.left;
             }
         }
 
         if (Input.GetKeyUp(KeyCode.D) && isValidRight())
         {
-              if (isVertical())
+            if (isVertical())
             {
-                transform.position += (Vector3.right - new Vector3(GridManager.vOffset,0f,0f));
-            }else{
+                transform.position += (Vector3.right - new Vector3(GridManager.vOffset, 0f, 0f));
+            }
+            else
+            {
                 transform.position += Vector3.right;
             }
         }
@@ -87,5 +91,25 @@ public class PieceMovement : MonoBehaviour
     {
         float zRotation = transform.rotation.eulerAngles.z;
         return (zRotation == 90 || zRotation == 270);
+    }
+
+    private bool canMoveGrid()
+    {
+
+        foreach (Transform children in myCubes)
+        {
+            int Xpos = (int)(children.transform.position.x);
+            int Ypos = (int)(children.transform.position.y);
+            if (Ypos < GridManager.Ygrid)
+            {
+                if (((Xpos + 1) < GridManager.Xgrid) &&
+                    GridManager.isBusyPosition(Xpos + 1, Ypos)) return false;
+                if (((Xpos - 1) > 0) &&
+                    GridManager.isBusyPosition(Xpos - 1, Ypos)) return false;
+            }else{
+                return false;
+            }   
+        }
+        return true;
     }
 }

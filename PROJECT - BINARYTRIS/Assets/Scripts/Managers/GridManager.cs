@@ -34,7 +34,6 @@ public class GridManager : MonoBehaviour
             }
         }
     }
-
     static void lineDown(int y)
     {
         for (int x = 0; x < Xgrid; x++)
@@ -45,5 +44,9 @@ public class GridManager : MonoBehaviour
                 Grid[x, y] = null;
             }
         }
+    }
+    public static bool isBusyPosition(int x, int y)
+    {
+        return Grid[x, y] != null;
     }
 }
