@@ -25,33 +25,33 @@ public class PieceMovement : MonoBehaviour
 
     private void Move()
     {
-        /*
-        if (Input.GetKeyUp(KeyCode.W) && validMove(Vector3.forward))
+
+        if (Input.GetKeyUp(KeyCode.W))
         {
-            lastMove = Vector3.forward;
-            transform.position += lastMove;
+            transform.Rotate(0, 0, 90);
         }
 
-        if (Input.GetKeyUp(KeyCode.S) && validMove(Vector3.back))
+        if (Input.GetKeyUp(KeyCode.A) && isValidLeft())
         {
-            lastMove = Vector3.back;
-            transform.position += lastMove;
-        }
-        */
-
-        if (Input.GetKeyUp(KeyCode.A) && validMove(Vector3.right))
-        {
-            lastMove = Vector3.right;
-            transform.position += lastMove;
+            
+            if (isVertical())
+            {
+                transform.position += (Vector3.left + new Vector3(GridManager.vOffset,0f,0f));
+            }else{
+                transform.position += Vector3.left;
+            }
         }
 
-        if (Input.GetKeyUp(KeyCode.D) && validMove(Vector3.left))
+        if (Input.GetKeyUp(KeyCode.D) && isValidRight())
         {
-            lastMove = Vector3.left;
-            transform.position += lastMove;
+              if (isVertical())
+            {
+                transform.position += (Vector3.right - new Vector3(GridManager.vOffset,0f,0f));
+            }else{
+                transform.position += Vector3.right;
+            }
         }
-
-        transform.Translate(new Vector3(0f, customGravity, 0f) * speedGravity * Time.deltaTime);
+        transform.position += new Vector3(0f, customGravity, 0f) * speedGravity * Time.deltaTime;
     }
 
     public void StopMove()
@@ -59,15 +59,33 @@ public class PieceMovement : MonoBehaviour
         canMove = false;
     }
 
-    public bool validMove(Vector3 nextDirecction)
+    bool isValidRight()
     {
-        Vector3 nextMove = transform.position + nextDirecction;
-
-        if (transform.position.x < (GridManager.Ygrid - GridManager.Zoffset)  && transform.position.x > GridManager.Zoffset)
+        if (isVertical())
         {
-            return true;
+            return (transform.position.x < (GridManager.Xgrid - GridManager.vOffset));
         }
+        else
+        {
+            return transform.position.x < (GridManager.Xgrid - GridManager.hOffset);
+        }
+    }
 
-        return false;
+    bool isValidLeft()
+    {
+        if (isVertical())
+        {
+            return (transform.position.x > (GridManager.hOffset - GridManager.vOffset));
+        }
+        else
+        {
+            return (transform.position.x > GridManager.hOffset);
+        }
+    }
+
+    bool isVertical()
+    {
+        float zRotation = transform.rotation.eulerAngles.z;
+        return (zRotation == 90 || zRotation == 270);
     }
 }

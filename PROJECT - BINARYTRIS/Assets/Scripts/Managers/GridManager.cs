@@ -9,8 +9,8 @@ public class GridManager : MonoBehaviour
 
     //public static int Zgrid = 10;
 
-    public static int Zoffset = 2;
-	
+    public static float hOffset = 2f;
+    public static float vOffset = 0.5f;	
     public static Transform[,] Grid = new Transform[Xgrid,Ygrid];
     void Start()
     {

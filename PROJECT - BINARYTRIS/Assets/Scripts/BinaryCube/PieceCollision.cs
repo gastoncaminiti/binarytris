@@ -48,21 +48,19 @@ public class PieceCollision : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-
         AddGrid();
     }
 
     private void AddGrid(){
          foreach (Transform children in myCubes)
         {
-            // get x,y,z position as int
-            // for all childrens - in this case cubes
-            //int Xpos = Mathf.RoundToInt(children.transform.position.x);
-            //int Ypos = Mathf.RoundToInt(children.transform.position.y);
-            Debug.Log(children.transform.position);
-            //GridManager.Grid[Xpos,Ypos] = children;
+            int Xpos = Mathf.RoundToInt(children.transform.position.x);
+            int Ypos = Mathf.RoundToInt(children.transform.position.y);
+           //GridManager.Grid[GridIndex(Xpos),GridIndex(Ypos)] = children;
         }
+    }
 
-        Debug.Log(GridManager.Grid);
+    private int GridIndex(int index){
+        return index - 1;
     }
 }
