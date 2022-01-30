@@ -67,4 +67,8 @@ public class SwitchCube : MonoBehaviour
         return !isOne && !isPlaceholder;
     }
 
+    public bool isOneValid()
+    {
+        return isOne && !isPlaceholder;
+    }
 }

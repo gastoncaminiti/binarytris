@@ -63,7 +63,7 @@ public class PieceMovement : MonoBehaviour
     {
         Vector3 nextMove = transform.position + nextDirecction;
 
-        if (nextMove.x < GridManager.Zoffset  && nextMove.x > -GridManager.Zoffset)
+        if (transform.position.x < (GridManager.Ygrid - GridManager.Zoffset)  && transform.position.x > GridManager.Zoffset)
         {
             return true;
         }
