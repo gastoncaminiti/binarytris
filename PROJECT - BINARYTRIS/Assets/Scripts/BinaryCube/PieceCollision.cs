@@ -54,13 +54,11 @@ public class PieceCollision : MonoBehaviour
     private void AddGrid(){
          foreach (Transform children in myCubes)
         {
-            int Xpos = Mathf.RoundToInt(children.transform.position.x);
-            int Ypos = Mathf.RoundToInt(children.transform.position.y);
-           //GridManager.Grid[GridIndex(Xpos),GridIndex(Ypos)] = children;
+            int Xpos = (int)(children.transform.position.x);
+            int Ypos = (int)(children.transform.position.y);
+            GridManager.Grid[Xpos,Ypos] = children;
         }
-    }
 
-    private int GridIndex(int index){
-        return index - 1;
+        GridManager.checkPlane();
     }
 }
